@@ -1,0 +1,19 @@
+{
+  "name": "monaco-bundle",
+  "version": "0.47.0",
+  "description": "monaco-editor bundled with esbuild so it actually works",
+  "license": "MIT",
+  "typings": "./editor/editor.api.d.ts",
+  "module": "./editor/editor.main.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/slowtacocar/monaco-bundle"
+  },
+  "devDependencies": {
+    "esbuild": "^0.20.2",
+    "monaco-editor": "0.47.0"
+  },
+  "scripts": {
+    "build": "esbuild --bundle --outdir=editor --loader:.ttf=dataurl --format=esm --minify node_modules/monaco-editor/esm/vs/editor/editor.main.js && esbuild --bundle --outdir=. --minify node_modules/monaco-editor/esm/vs/*/*.worker.js node_modules/monaco-editor/esm/vs/language/*/*.worker.js && cp node_modules/monaco-editor/esm/vs/editor/editor.api.d.ts editor/editor.api.d.ts"
+  }
+}
